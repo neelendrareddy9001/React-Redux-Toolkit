@@ -14,6 +14,9 @@ const AddPostForm = () => {
     const onContentChanged = e => setContent(e.target.value);
     const onAuthorChanged = e => setUserId(e.target.value);
 
+    const users = useSelector(selectAllusers);
+    
+    
     const onSavePostClicked = () => {
         if(title && content) {
             dispatch(
@@ -23,6 +26,7 @@ const AddPostForm = () => {
             setContent('')
         }
     }
+    const canSave = Boolean(title) && Boolean(content) && Boolean(userId)
     
     const usersOptions = users.map(user => (
         <option key={user.id} value={user.id}>
@@ -49,7 +53,7 @@ const AddPostForm = () => {
                 value={content}
                 onChange={onContentChanged}
             />
-            <button type='button' onClick={onSavePostClicked}>Save Post</button>
+            <button type='button' disabled={!canSave}  onClick={onSavePostClicked}>Save Post</button>
         </form>
     </section>
   )
