@@ -1,8 +1,9 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { selectAllPosts } from "./postSlice";
 import PostAuthor from "./PostAuthor";
 import TimeAgo from "./TimeAgo";
-import ReactionButton from '../Posts/ReactionButtons'
+import ReactionButton from '../Posts/ReactionButtons';
+import {useEffect} from 'react';
 
 const PostList = () => {
     const posts = useSelector(selectAllPosts)
