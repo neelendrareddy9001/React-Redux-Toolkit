@@ -46,9 +46,23 @@ const postSlice = createSlice({
                     title,
                     date : new Date().toISOString(),
                     content,
-                    userId
+                    userId,
+                    reactions : {
+                        thumbsUp : 0,
+                        wow : 0,
+                        heart : 0,
+                        coffee : 0,
+                        rocket : 0
+                    }
                 }
             }
+        }
+   },
+   reactionAdded(state, action) {
+        const {postId, reaction} = action.payload;
+        const existingPost = state.find(post => post.id === postId)
+        if(existingPost) {
+            existingPost.reactions[reaction]++
         }
     }
 }});
