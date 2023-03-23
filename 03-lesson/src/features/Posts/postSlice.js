@@ -85,6 +85,8 @@ const postSlice = createSlice({
 });
 
 export const selectAllPosts = (state) => state.posts.posts;
+export const getPostStatus = (state) => state.posts.status;
+export const getPostsError = (state) => state.posts.error;
 
 export const {postAdded,reactionAdded} = postSlice.actions
 
