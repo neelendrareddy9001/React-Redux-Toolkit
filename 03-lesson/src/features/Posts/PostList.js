@@ -6,7 +6,18 @@ import ReactionButton from '../Posts/ReactionButtons';
 import {useEffect} from 'react';
 
 const PostList = () => {
-    const posts = useSelector(selectAllPosts)
+    
+    const dispatch = useDispatch();
+    
+    const posts = useSelector(selectAllPosts);
+    const postStatus = useSelector(getPostStatus);
+    const error = useSelector(getPostsError);
+    
+    useEffect(() => {
+        if(postStatus === 'idle') {
+            dispatch(fetchPosts())
+        }
+    }, [postStatus, dispatch]);
 
     const orderedPosts = posts.slice().sort((a,b) => b.date.localeCompare(a.date));
 
